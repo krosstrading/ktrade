@@ -1,5 +1,5 @@
 KrossTrading
-=====
+-----------------------
 
 - **Website:** https://www.krosstrading.com
 - **Documentation:**

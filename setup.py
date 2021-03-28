@@ -1,4 +1,6 @@
 import pathlib
+import re
+
 import setuptools
 
 
@@ -7,6 +9,14 @@ root_dir = pathlib.Path(__file__).parent
 description = 'KrossTrading Core Package'
 
 long_description = (root_dir / 'README.rst').read_text(encoding='utf-8')
+
+# PyPI disables the "raw" directive.
+long_description = re.sub(
+    r"^\.\. raw:: html.*?^(?=\w)",
+    "",
+    long_description,
+    flags=re.DOTALL | re.MULTILINE,
+)
 
 exec((root_dir / 'ktrade' / 'version.py').read_text(encoding='utf-8'))
 
@@ -23,10 +33,10 @@ setuptools.setup(
     license='Apache License 2.0',
     classifiers=[
         'Development Status :: 1 - Planning',
-        'Environment :: Web Envorinment',
+        'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
-        'Operating System :: OS Indenpendent',
+        'Operating System :: OS Independent',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],

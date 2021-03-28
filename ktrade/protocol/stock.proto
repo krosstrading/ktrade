@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package stock_api;
+
+
+enum ResultCode {
+    OK = 0;
+    NO_PROVIDER = 1;
+    RESPONSE_TIMEOUT = 2;
+}
+
+
+message StockDayQuery {
+    string code = 1;
+    google.protobuf.Timestamp from_datetime = 2;
+    google.protobuf.Timestamp until_datetime = 3;
+}
+
+message StockDayResponse {
+    string code = 1;
+}
+
+
+message StockQuery {
+    uint64 uuid_h = 1;
+    uint64 uuid_l = 2;
+    oneof query {
+        StockDayQuery day_query = 3;
+    }
+}
+
+
+message StockResult {
+    uint64 uuid_h = 1;
+    uint64 uuid_l = 2;
+    ResultCode code = 3;
+    oneof Response {
+        StockDayResponse day_response = 4;
+    }
+}

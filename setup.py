@@ -8,15 +8,16 @@ root_dir = pathlib.Path(__file__).parent
 
 description = 'KrossTrading Core Package'
 
-long_description = (root_dir / 'README.rst').read_text(encoding='utf-8')
+long_description = 'KrossTrading core package for multi-vendor, clients'
+#long_description = (root_dir / 'README.md').read_text(encoding='utf-8')
 
 # PyPI disables the "raw" directive.
-long_description = re.sub(
-    r"^\.\. raw:: html.*?^(?=\w)",
-    "",
-    long_description,
-    flags=re.DOTALL | re.MULTILINE,
-)
+#long_description = re.sub(
+#    r"^\.\. raw:: html.*?^(?=\w)",
+#    "",
+#    long_description,
+#    flags=re.DOTALL | re.MULTILINE,
+#)
 
 exec((root_dir / 'ktrade' / 'version.py').read_text(encoding='utf-8'))
 

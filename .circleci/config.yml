@@ -1,0 +1,47 @@
+version: 2.1
+
+jobs:
+  main:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+      - run: sudo pip install tox codecov
+      - run: tox -e coverage
+      - run: codecov
+  py37:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+      - run: sudo pip install tox
+      - run: tox -e py37
+
+  py38:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - checkout
+      - run: sudo pip install tox
+      - run: tox -e py38
+  py39:
+    docker:
+      - image: circleci/python:3.9
+    steps:
+      - checkout
+      - run: sudo pip install tox
+      - run: tox -e py39
+
+workflows:
+  main:
+    jobs:
+      - main
+      - py37:
+          requires:
+            - main
+      - py38:
+          requires:
+            - main
+      - py39:
+          requires:
+            - main
